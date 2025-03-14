@@ -1,4 +1,5 @@
 import AddMessageButton from "@/components/add-message-button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { getMessages } from "@/db/queries";
 import { getSession } from "@/lib/auth/server";
@@ -37,6 +38,12 @@ export default async function Home() {
       {session ? (
         <div className="text-center">
           <p className="text-sm">Logged in as {session.user.name}</p>
+          <Avatar>
+            <AvatarImage src={session.user.image ?? ""} alt="avatar" />
+            <AvatarFallback>
+              {session.user.name?.charAt(0)?.toUpperCase() ?? "U"}
+            </AvatarFallback>
+          </Avatar>
         </div>
       ) : (
         <div className="text-center">
