@@ -46,6 +46,6 @@ export async function insertRandomMessage() {
     .values(message)
     .returning({ insertedId: messagesTable.id });
 
-  console.log("Inserted message:", result[0]);
   revalidatePath("/"); // Revalidate the path to update the UI
+  return result[0]; // Return the inserted message
 }
