@@ -113,7 +113,7 @@ export default function LandingPage() {
           </nav>
           <div className="flex items-center gap-4">
             <ModeToggle />
-            <Button asChild>
+            <Button>
               <Link href="/login">Sign In</Link>
             </Button>
           </div>
