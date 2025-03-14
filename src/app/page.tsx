@@ -1,17 +1,12 @@
 import AddMessageButton from "@/components/add-message-button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { getMessages } from "@/db/queries";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getSession } from "@/lib/auth/server";
 import Link from "next/link";
 
 export default async function Home() {
   const messages = await getMessages();
-  const sessionResponse = await auth.api.getSession({
-    headers: await headers(),
-  });
-  const session = sessionResponse;
-  console.log("session", session);
+  const session = await getSession();
   return (
     <div className="flex items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 flex-col">
       <h1 className="text-4xl font-bold text-center">Turso Chat</h1>
@@ -39,7 +34,15 @@ export default async function Home() {
       ) : (
         <p>No messages yet. Click the button below to add one.</p>
       )}
-
+      {session ? (
+        <div className="text-center">
+          <p className="text-sm">Logged in as {session.user.name}</p>
+        </div>
+      ) : (
+        <div className="text-center">
+          <p className="text-sm">You are not logged in.</p>
+        </div>
+      )}
       <AddMessageButton />
       <ModeToggle />
       <Link href="/login">Login</Link>
