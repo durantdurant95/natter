@@ -15,6 +15,13 @@
       "when": 1741926942230,
       "tag": "0001_melodic_morbius",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1741934600861,
+      "tag": "0002_blue_hemingway",
+      "breakpoints": true
     }
   ]
 }

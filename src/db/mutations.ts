@@ -1,7 +1,7 @@
 "use server"; // This is a server action
 import { revalidatePath } from "next/cache";
 import { db } from "./db";
-import { messagesTable } from "./schema";
+import { messagesTable } from "./schema/messages";
 
 // Random message contents
 const randomMessages = [
