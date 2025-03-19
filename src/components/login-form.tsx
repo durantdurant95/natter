@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { signInWithGithub } from "@/lib/auth/actions";
+import { signInWithGithub } from "@/lib/auth/auth-client";
 
 export function LoginForm() {
   return (
