@@ -1,1 +1,0 @@
-ALTER TABLE `messages` ALTER COLUMN "timestamp" TO "timestamp" text NOT NULL DEFAULT 'CURRENT_TIMESTAMP';

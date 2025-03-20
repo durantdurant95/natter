@@ -1,3 +1,4 @@
+import { auth } from "@/auth/auth";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -13,8 +14,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function DashboardPage() {
+  const session = await auth();
+  if (!session) {
+    redirect("/login");
+  }
   return (
     <SidebarProvider>
       <AppSidebar />

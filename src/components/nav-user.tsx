@@ -7,7 +7,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { logOut } from "@/auth/actions";
+import { auth } from "@/auth/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,11 +23,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { getSession, signOut } from "@/lib/auth/auth-client";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export async function NavUser() {
-  const session = await getSession();
+  const session = await auth();
   const user = session?.user;
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -41,7 +43,9 @@ export async function NavUser() {
                   src={user?.image ?? undefined}
                   alt={user?.name ?? "User"}
                 />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {user?.name?.[0]}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">
@@ -102,7 +106,7 @@ export async function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={signOut}>
+            <DropdownMenuItem onClick={logOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>
